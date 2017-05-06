@@ -72,7 +72,12 @@ RUN google-cloud-sdk/bin/gcloud config set --installation component_manager/disa
 # Changes are lost on a subsequent run.
 RUN sed -i -- 's/\"disable_updater\": false/\"disable_updater\": true/g' /google-cloud-sdk/lib/googlecloudsdk/core/config.json
 
+#
+# appengine sdk
+#
+RUN curl -SLO https://storage.googleapis.com/appengine-sdks/featured/appengine-java-sdk-1.9.52.zip && unzip appengine-java-sdk-1.9.52.zip && rm appengine-java-sdk-1.9.52.zip
+
 RUN mkdir /.ssh
-ENV PATH /google-cloud-sdk/bin:$PATH
+ENV PATH /google-cloud-sdk/bin:/appengine-java-sdk-1.9.52/bin:$PATH
 VOLUME ["/.config"]
 CMD ["/bin/bash"]
