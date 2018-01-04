@@ -1,10 +1,14 @@
 FROM maven:3.5.0-jdk-8-alpine
 
 #
+# Install make - used for gprs npm
+#
+RUN apk add --update shadow make gnupg xz ca-certificates openssl python
+RUN update-ca-certificates
+
+#
 # nodejs
 #
-
-
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
