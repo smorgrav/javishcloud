@@ -1,10 +1,6 @@
-FROM maven:3.5.0-jdk-8-alpine
+FROM maven:3.5.0-jdk-8
 
-#
-# Install make - used for gprs npm
-#
-RUN apk add --update shadow make gnupg xz ca-certificates openssl python
-RUN update-ca-certificates
+RUN apt-get update && apt-get -y install build-essential && apt-get clean
 
 #
 # nodejs
